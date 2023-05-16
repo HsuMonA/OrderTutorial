@@ -1,0 +1,68 @@
+﻿Use DataDict.pkg
+
+Open Invt
+Open Vendor
+Open OrderDtl
+
+Register_Object Invt_sl
+
+Class cInvtDataDictionary is a DataDictionary
+    
+    Procedure Construct_Object
+        Forward Send Construct_Object
+        Set Main_File to Invt.File_Number
+
+        Set Add_Client_File to OrderDtl.File_Number
+
+        Set Add_Server_File to Vendor.File_Number
+
+        Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
+        Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+
+        Set Field_Option Field Invt.Item_Id DD_AUTOFIND to True
+        Set Field_Option Field Invt.Item_Id DD_CAPSLOCK to True
+        Set Key_Field_State Field Invt.Item_Id to True
+        Set Field_Label_Long Field Invt.Item_Id to "Invt.Item Id"
+        Set Field_Label_Short Field Invt.Item_Id to "Item Id"
+        Set Status_Help Field Invt.Item_Id to "Inventory Item ID - user defined identification"
+        Set Field_Prompt_Object Field Invt.Item_Id to Invt_sl
+
+        Set Field_Prompt_Object Field Invt.Description to Invt_sl
+
+        Set Field_Option Field Invt.Vendor_Id DD_CAPSLOCK to True
+        Set Status_Help Field Invt.Vendor_Id to "Vendor Number"
+
+        Set Status_Help Field Invt.Vendor_Part_Id to "Vendor ID name for this item"
+
+        Set Field_Value_Range Field Invt.Unit_Price to 0 999999.99
+        Set Field_Mask_Type Field Invt.Unit_Price to Mask_Currency_Window
+        Set Status_Help Field Invt.Unit_Price to "Retail unit price"
+        Set Field_Prompt_Object Field Invt.Unit_Price to Invt_sl
+
+        Set Field_Value_Range Field Invt.On_Hand to -999999 999999
+        Set Status_Help Field Invt.On_Hand to "Units currently available"
+        Set Field_Prompt_Object Field Invt.On_Hand to Invt_sl
+        Set Cascade_Delete_State to False
+
+    End_Procedure
+
+    Function Validate_Save Returns Integer
+        Integer iRetVal
+        Forward Get Validate_Save to iRetVal
+        
+        If iRetVal Function_Return iRetVal
+        If (Invt.On_Hand < 0) Begin
+            Send UserError "Insufficient Inventory Stock" ""
+            Function_Return iRetVal
+        End
+    End_Function
+
+End_Class
+
+    #IFDEF Is$WebApp
+    #ELSE
+    Use Invt.sl
+    #ENDIF
+    

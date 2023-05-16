@@ -1,0 +1,104 @@
+﻿Use DataDict.pkg
+
+Open Customer
+Open OrderHea
+Open OrdSys
+
+Object Customer_State_VT is a CodeValidationTable
+    Set Type_Value to "STATES"
+    Set Allow_Blank_State to True
+End_Object
+
+Register_Object Customer_sl
+
+Class cCustomerDataDictionary is a DataDictionary
+    
+    Procedure Construct_Object
+        Forward Send Construct_Object
+        Set Main_File to Customer.File_Number
+
+        Set Add_System_File to OrdSys.File_Number DD_Lock_On_All
+
+        Set Add_Client_File to OrderHea.File_Number
+
+        Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
+        Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+
+        Set Field_Option Field Customer.Customer_Number DD_AUTOFIND to True
+        Set Key_Field_State Field Customer.Customer_Number to True
+        Set Field_Option Field Customer.Customer_Number DD_NOPUT to True
+        Set Field_Auto_Increment Field Customer.Customer_Number to File_Field OrdSys.Cust_Number
+        Set Field_Label_Long Field Customer.Customer_Number to "Customer Number"
+        Set Field_Label_Short Field Customer.Customer_Number to "Number"
+        Set Status_Help Field Customer.Customer_Number to "Customer ID Number (system assigned)"
+        Set Field_Prompt_Object Field Customer.Customer_Number to Customer_sl
+
+        Set Field_Label_Long Field Customer.Name to "Customer Name"
+        Set Field_Label_Short Field Customer.Name to "Name"
+        Set Status_Help Field Customer.Name to "Customer/Company Name"
+        Set Field_Prompt_Object Field Customer.Name to Customer_sl
+
+        Set Field_Label_Long Field Customer.Address to "Street Address"
+        Set Field_Label_Short Field Customer.Address to "Address"
+        Set Status_Help Field Customer.Address to "Street Address"
+
+        Set Field_Option Field Customer.State DD_CAPSLOCK to True
+        Set Field_Class_Name Field Customer.State to "Combo"
+        Set Field_Label_Long Field Customer.State to "State"
+        Set Field_Label_Short Field Customer.State to "St."
+        Set Status_Help Field Customer.State to "Two letter state Id."
+        Set Field_Value_Table Field Customer.State to Customer_State_VT
+
+        Set Field_Mask Field Customer.Zip to "#####-####"
+        Set Field_Label_Long Field Customer.Zip to "Zip/Postal Code"
+        Set Field_Label_Short Field Customer.Zip to "Zip"
+        Set Status_Help Field Customer.Zip to "Zip or Postal Code"
+
+        Set Field_Label_Long Field Customer.Phone_Number to "Phone Number"
+        Set Field_Label_Short Field Customer.Phone_Number to "Phone"
+        Set Status_Help Field Customer.Phone_Number to "Telephone Number"
+
+        Set Field_Label_Long Field Customer.Fax_Number to "Fax Number"
+        Set Field_Label_Short Field Customer.Fax_Number to "Fax"
+        Set Status_Help Field Customer.Fax_Number to "Fax Phone Number"
+
+        Set Field_Label_Long Field Customer.Email_Address to "E-Mail Address"
+        Set Field_Label_Short Field Customer.Email_Address to "E-Mail"
+        Set Status_Help Field Customer.Email_Address to "E-Mail Address"
+
+        Set Field_Mask_Type Field Customer.Credit_Limit to Mask_Currency_Window
+        Set Field_Class_Name Field Customer.Credit_Limit to "Spin"
+
+        Set Field_Option Field Customer.Purchases DD_DISPLAYONLY to True
+        Set Field_Mask_Type Field Customer.Purchases to Mask_Currency_Window
+        Set Field_Label_Long Field Customer.Purchases to "Total Purchases"
+        Set Field_Label_Short Field Customer.Purchases to "Purchases"
+
+        Set Field_Option Field Customer.Balance DD_DISPLAYONLY to True
+        Set Field_Mask_Type Field Customer.Balance to Mask_Currency_Window
+        Set Field_Label_Long Field Customer.Balance to "Balance Due"
+        Set Field_Label_Short Field Customer.Balance to "Balance"
+        Set Field_Prompt_Object Field Customer.Balance to Customer_sl
+
+        Set Status_Help Field Customer.Status to "Active/Inactive Status of Customer"
+        Set Field_Checkbox_Values Field Customer.Status to "Y" "N"
+        Set Cascade_Delete_State to False
+
+    End_Procedure
+
+    Procedure Field_Defaults
+        Forward Send Field_Defaults
+        Set Field_Changed_Value Field Customer.State to "the two letter abbreviation of the desired state"
+        Set Field_Changed_Value Field Customer.Credit_Limit to 1000
+        Set Field_Changed_Value Field Customer.Status to "Y"
+    End_Procedure
+
+End_Class
+
+    #IFDEF Is$WebApp
+    #ELSE
+    Use Customer.sl
+    #ENDIF
+    

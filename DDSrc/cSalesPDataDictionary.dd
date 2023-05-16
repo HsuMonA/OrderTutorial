@@ -1,0 +1,39 @@
+﻿Use DataDict.pkg
+
+Open SalesP
+
+Register_Object SalesP_sl
+
+Class cSalesPDataDictionary is a DataDictionary
+    
+    Procedure Construct_Object
+        Forward Send Construct_Object
+        Set Main_File to SalesP.File_Number
+
+        Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
+        Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+
+        Set Field_Option Field SalesP.Id DD_AUTOFIND to True
+        Set Field_Option Field SalesP.Id DD_CAPSLOCK to True
+        Set Field_Option Field SalesP.Id DD_REQUIRED to True
+        Set Key_Field_State Field SalesP.Id to True
+        Set Field_Label_Long Field SalesP.Id to "Sales Person Id"
+        Set Field_Label_Short Field SalesP.Id to "Id"
+        Set Status_Help Field SalesP.Id to "Sales Person Id code - Upper-case alpha"
+        Set Field_Prompt_Object Field SalesP.Id to SalesP_sl
+
+        Set Status_Help Field SalesP.Name to "Sales Person name - first and last"
+        Set Field_Prompt_Object Field SalesP.Name to SalesP_sl
+        Set Cascade_Delete_State to False
+
+    End_Procedure
+
+End_Class
+
+    #IFDEF Is$WebApp
+    #ELSE
+    Use SalesP.sl
+    #ENDIF
+    
