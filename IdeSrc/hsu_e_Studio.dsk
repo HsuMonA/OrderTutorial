@@ -13,8 +13,8 @@ Filename=Workspace Dashboard
 ViewType=101
 Top=21
 Left=0
-Bottom=662
-Right=864
+Bottom=723
+Right=1487
 TabIndex=0
 TabGroup=0
 [Window1]
@@ -22,8 +22,8 @@ Filename=C:\DataFlex Projects\OrderTutorial\AppSrc\Order.src
 ViewType=2
 Top=21
 Left=0
-Bottom=662
-Right=864
+Bottom=723
+Right=1487
 TabIndex=1
 TabGroup=0
 [Window2]
@@ -31,63 +31,63 @@ Filename=C:\DataFlex Projects\OrderTutorial\AppSrc\SalesPersonView.vw
 ViewType=2
 Top=21
 Left=0
-Bottom=662
-Right=864
+Bottom=723
+Right=1487
 TabIndex=2
 TabGroup=0
 [Window3]
-Filename=C:\DataFlex Projects\OrderTutorial\AppSrc\VendorView.vw
-ViewType=2
-Top=21
-Left=0
-Bottom=662
-Right=864
-TabIndex=3
-TabGroup=0
-[Window4]
-Filename=C:\DataFlex Projects\OrderTutorial\AppSrc\InventoryView.vw
-ViewType=2
-Top=21
-Left=0
-Bottom=662
-Right=864
-TabIndex=4
-TabGroup=0
-[Window5]
 Filename=C:\DataFlex Projects\OrderTutorial\AppSrc\OrderEntryView.vw
 ViewType=2
 Top=21
 Left=0
-Bottom=662
-Right=864
+Bottom=723
+Right=1487
 TabIndex=5
 TabGroup=0
-[Window6]
+[Window4]
 Filename=C:\DataFlex Projects\OrderTutorial\AppSrc\CustomerView .vw
 ViewType=2
 Top=21
 Left=0
-Bottom=662
-Right=864
+Bottom=723
+Right=1487
 TabIndex=7
 TabGroup=0
-[Window7]
+[Window5]
 Filename=C:\DataFlex Projects\OrderTutorial\DDSrc\cCustomerDataDictionary.dd
 ViewType=3
 Top=21
 Left=0
-Bottom=662
-Right=864
+Bottom=723
+Right=1487
 TabIndex=8
+TabGroup=0
+[Window6]
+Filename=C:\DataFlex Projects\OrderTutorial\AppSrc\InventoryView.vw
+ViewType=2
+Top=21
+Left=0
+Bottom=723
+Right=1487
+TabIndex=4
+TabGroup=0
+[Window7]
+Filename=C:\DataFlex Projects\OrderTutorial\AppSrc\VendorView.vw
+ViewType=2
+Top=21
+Left=0
+Bottom=723
+Right=1487
+TabIndex=3
 TabGroup=0
 [Window8]
 Filename=C:\DataFlex Projects\OrderTutorial\AppSrc\Prime.vw
 ViewType=1
 Top=21
 Left=0
-Bottom=662
-Right=864
-CursorLine=0
-CursorColumn=0
+Bottom=723
+Right=1487
+CursorLine=35
+CursorColumn=4
 TabIndex=6
 TabGroup=0

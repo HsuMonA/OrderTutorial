@@ -14,24 +14,25 @@ Object oPrime is a dbView
         Set Location to 76 108
         Set Label to "Calc Prime"
     
-         // fires when the button is clicked
+        // fires when the button is clicked
         Procedure onClick
-            Integer i j isPrime
-                    
-            For i from 3 to 50
-                Move 1 to isPrime
-                For j from 2 to (i / 2)
-                    If (Mod(i, j) = 0) Begin
-                        Move 0 to isPrime
-                        Break
+            Integer iNum iDivisor
+            Boolean isPrime                    
+            For iNum from 3 to 50
+                Move True to isPrime
+                // check if the number is divisible by prime numbers up to the square root of the number
+                For iDivisor from 2 to (Sqrt(iNum))
+                //if the iNum is divisible by the iDivisor, is not prime
+                    If (Mod(iNum, iDivisor) = 0) Begin
+                        Move False to isPrime
                     End
                 Loop
-                    If (isPrime = 1) Begin
-                    Showln i
-                End
+                If (isPrime = True) Begin
+                    Showln iNum
+                End              
             Loop
         End_Procedure
-
+        
     End_Object
 
 Cd_End_Object

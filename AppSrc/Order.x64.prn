@@ -1,5 +1,5 @@
 Compiling Program: C:\DataFlex Projects\OrderTutorial\AppSrc\Order.src
-Memory Available: 18237313024
+Memory Available: 16409817088
 1>Use DFAllEnt.pkg
 Using pre-compiled package DFALLENT.PKG
 Including file: dfallent.x64.pkd    (C:\Program Files\DataFlex 20.1\Pkg\dfallent.x64.pkd)
@@ -5227,54 +5227,55 @@ Including file: Prime.vw    (C:\DataFlex Projects\OrderTutorial\AppSrc\Prime.vw)
 76878>>>        Set Location to 76 108
 76879>>>        Set Label to "Calc Prime"
 76880>>>    
-76880>>>         // fires when the button is clicked
+76880>>>        // fires when the button is clicked
 76880>>>        Procedure onClick
-76883>>>            Integer i j isPrime
-76883>>>                    
-76883>>>            For i from 3 to 50
+76883>>>            Integer iNum iDivisor
+76883>>>            Boolean isPrime                    
+76883>>>            For iNum from 3 to 50
 76889>>>>
-76889>>>                Move 1 to isPrime
-76890>>>                For j from 2 to (i / 2)
+76889>>>                Move True to isPrime
+76890>>>                // check if the number is divisible by prime numbers up to the square root of the number
+76890>>>                For iDivisor from 2 to (Sqrt(iNum))
 76896>>>>
-76896>>>                    If (Mod(i, j) = 0) Begin
-76898>>>                        Move 0 to isPrime
-76899>>>                        Break
-76900>>>                    End
+76896>>>                //if the iNum is divisible by the iDivisor, is not prime
+76896>>>                    If (Mod(iNum, iDivisor) = 0) Begin
+76898>>>                        Move False to isPrime
+76899>>>                    End
+76899>>>>
+76899>>>                Loop
 76900>>>>
-76900>>>                Loop
-76901>>>>
-76901>>>                    If (isPrime = 1) Begin
-76903>>>                    Showln i
-76905>>>                End
+76900>>>                If (isPrime = True) Begin
+76902>>>                    Showln iNum
+76904>>>                End              
+76904>>>>
+76904>>>            Loop
 76905>>>>
-76905>>>            Loop
-76906>>>>
-76906>>>        End_Procedure
+76905>>>        End_Procedure
+76906>>>        
+76906>>>    End_Object
 76907>>>
-76907>>>    End_Object
-76908>>>
-76908>>>Cd_End_Object
-76910>>>>
-76910>
-76910>        Procedure Activate_About
-76913>            Send DoAbout "" "" "" "" ""
-76914>        End_Procedure
+76907>>>Cd_End_Object
+76909>>>>
+76909>
+76909>        Procedure Activate_About
+76912>            Send DoAbout "" "" "" "" ""
+76913>        End_Procedure
+76914>
+76914>    End_Object
 76915>
-76915>    End_Object
+76915>End_Object
 76916>
-76916>End_Object
+76916>Start_UI
 76917>
-76917>Start_UI
-76918>
 Summary
-Memory Available: 18216517632
+Memory Available: 16395759616
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 43904
 Total Resources: 0
-Total Commands : 76917
+Total Commands : 76916
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 545023
+Static Data    : 545015
 Message area   : 544268
 Total Blocks   : 28863
